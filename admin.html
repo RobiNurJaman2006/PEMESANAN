@@ -6,39 +6,7 @@
     <title>Admin Dashboard | Pecel Lele Udin</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="register.css">
-    <style>
-        .admin-nav { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 10px; }
-        .nav-btn { 
-            padding: 12px 20px; border-radius: 12px; background: var(--glass); 
-            border: 1px solid rgba(255,255,255,0.1); color: white; cursor: pointer; 
-            white-space: nowrap; transition: 0.3s; font-family: 'Poppins';
-        }
-        .nav-btn.active { background: var(--primary); border-color: var(--primary); font-weight: bold; }
-        .card-item { margin-bottom: 15px; border-left: 4px solid var(--primary); }
-        .status-badge { font-size: 0.7rem; padding: 4px 8px; border-radius: 5px; float: right; }
-        .bg-pending { background: #ffc107; color: #000; }
-        .bg-success { background: #28a745; color: #fff; }
-        .btn-action { 
-            margin-top: 10px; padding: 8px; width: 100%; border-radius: 8px; 
-            border: none; cursor: pointer; font-weight: 600; 
-        }
-        @media (max-width: 768px) {
-          .anggota{
-            width : 45%;
-
-          }
-        }
-        @media (max-width: 480px) {
-          .anggota{
-            width : 90%;
-
-          }
-        }
-          
-        
-    </style>
-</head>
+    <link rel="stylesheet" href="register.css"> <link rel="stylesheet" href="admin.css"> </head>
 <body>
 
 <div class="main-container">
@@ -49,42 +17,57 @@
 
     <div class="admin-nav">
         <button class="nav-btn active" onclick="showTab('tab-pesanan', this)">
-            <i class="fa-solid fa-utensils"></i> Kelola Pesanan
+            <i class="fa-solid fa-utensils"></i> <span>Pesanan</span>
         </button>
         <button class="nav-btn" onclick="showTab('tab-bayar', this)">
-            <i class="fa-solid fa-cash-register"></i> Kelola Bayar
+            <i class="fa-solid fa-cash-register"></i> <span>Kasir</span>
         </button>
         <button class="nav-btn" onclick="showTab('tab-menu', this)">
-            <i class="fa-solid fa-bowl-food"></i> Kelola Menu
+            <i class="fa-solid fa-bowl-food"></i> <span>Menu</span>
         </button>
     </div>
 
     <div id="tab-pesanan" class="tab-content animate-fade">
-        <label>Antrian Pesanan (Dapur)</label>
-        <div id="container-pesanan">
-            <p style="text-align:center; opacity:0.5;">Memuat data pesanan...</p>
+        <label class="section-title">Antrian Dapur</label>
+        <div id="container-pesanan" class="admin-grid">
+            <div class="card card-item">
+                <span class="status-badge bg-pending">Proses</span>
+                <h4>Muhammad Abi Rasul</h4>
+                <p class="order-detail">Ayam Goreng (1), Lele (2)</p>
+                <button class="btn-action bg-success">Selesai Dimasak</button>
+            </div>
         </div>
     </div>
 
     <div id="tab-bayar" class="tab-content hidden animate-fade">
-        <label>Verifikasi Pembayaran (Kasir)</label>
-        <div id="container-bayar">
-            <p style="text-align:center; opacity:0.5;">Memuat data pembayaran...</p>
+        <label class="section-title">Verifikasi Pembayaran</label>
+        <div id="container-bayar" class="admin-grid">
+            <p style="text-align:center; opacity:0.5; grid-column: 1/-1;">Memuat data pembayaran...</p>
         </div>
     </div>
 
     <div id="tab-menu" class="tab-content hidden animate-fade">
         <div class="card">
             <label>Tambah Menu Baru</label>
-            <input type="text" id="newMenuNama" placeholder="Nama Menu" style="margin-bottom:10px;">
-            <input type="number" id="newMenuHarga" placeholder="Harga (Rp)" style="margin-bottom:10px;">
-            <button class="btn-submit" onclick="tambahMenu()">Simpan Menu</button>
+            <div class="input-group">
+                <input type="text" id="newMenuNama" placeholder="Nama Menu">
+                <input type="number" id="newMenuHarga" placeholder="Harga (Rp)">
+                <button class="btn-submit" onclick="tambahMenu()">
+                    <i class="fa-solid fa-plus"></i> Simpan
+                </button>
+            </div>
         </div>
+        
+        <label class="section-title">Daftar Menu Saat Ini</label>
+        <div id="list-menu-admin" class="admin-grid">
+            </div>
     </div>
 
-    <button class="btn-submit" style="background:#dc3545; margin-top:30px;" onclick="handleLogout()">
-        <i class="fa-solid fa-power-off"></i> Keluar Sistem
-    </button>
+    <div class="footer-logout">
+        <button class="btn-logout" onclick="handleLogout()">
+            <i class="fa-solid fa-power-off"></i> Keluar Sistem Admin
+        </button>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
