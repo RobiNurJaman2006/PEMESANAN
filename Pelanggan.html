@@ -16,7 +16,7 @@
         <p>Selamat datang di pemesanan berbasis web</p>
     </header>
 
-    <form id="orderForm">
+    <form id="orderForm" class="order-form">
         <div class="card section-nama">
             <label><i class="fa-solid fa-user"></i> Nama Pelanggan</label>
             <input type="text" name="nama" placeholder="Masukkan nama anda..." required>
@@ -70,32 +70,34 @@
         <input type="hidden" name="total_harga" id="inputTotal">
         <input type="hidden" name="detail_pesanan" id="inputDetail">
     </form>
-</div>
-<div class="card section-history animate-fade">
-    <label><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Pesanan</label>
-    
-    <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="searchInput" placeholder="Cari nama pelanggan..." onkeyup="filterOrders()">
-    </div>
 
-    <div class="table-container">
-        <table id="orderTable">
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Pesanan</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody id="orderHistoryBody">
-                <tr>
-                    <td colspan="3" style="text-align:center; opacity:0.5;">Memuat data...</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="card section-history animate-fade">
+        <label><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Pesanan</label>
+        
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Cari nama pelanggan..." onkeyup="filterOrders()">
+        </div>
+
+        <div class="table-container">
+            <table id="orderTable">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Pesanan</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="orderHistoryBody">
+                    <tr>
+                        <td colspan="3" style="text-align:center; opacity:0.5;">Memuat data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="register.js"></script>
 </body>
