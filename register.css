@@ -157,3 +157,15 @@ td {
 }
 
 tr:hover { background: rgba(255,255,255,0.03); }
+@media (max-width: 768px) {
+          .anggota{
+            width : 45%;
+
+          }
+        }
+        @media (max-width: 480px) {
+          .anggota{
+            width : 90%;
+
+          }
+        }
