@@ -8,7 +8,131 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="register.css"> <link rel="stylesheet" href="admin.css"> </head>
 <body>
+<style>
+    /* Styling Khusus Tab Admin */
+.admin-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+}
+.admin-nav::-webkit-scrollbar { display: none; } /* Sembunyikan scrollbar di Chrome */
 
+.nav-btn { 
+    flex: 1;
+    padding: 15px; 
+    border-radius: 15px; 
+    background: var(--glass); 
+    border: 1px solid rgba(255,255,255,0.1); 
+    color: white; 
+    cursor: pointer; 
+    white-space: nowrap; 
+    transition: 0.3s;
+    font-family: 'Poppins';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+}
+
+.nav-btn i { font-size: 1.2rem; }
+.nav-btn.active { 
+    background: var(--primary); 
+    border-color: var(--primary); 
+    box-shadow: 0 5px 15px rgba(255,140,0,0.3);
+}
+
+/* Grid untuk Item Pesanan & Menu */
+.admin-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 Kolom di HP */
+    gap: 15px;
+}
+
+@media (min-width: 768px) {
+    .admin-grid { grid-template-columns: 1fr 1fr; } /* 2 Kolom di Tablet */
+}
+
+@media (min-width: 1024px) {
+    .admin-grid { grid-template-columns: 1fr 1fr 1fr; } /* 3 Kolom di Laptop */
+}
+
+/* Card Styling */
+.card-item { 
+    border-left: 5px solid var(--primary); 
+    position: relative;
+    padding: 15px;
+}
+
+.status-badge { 
+    font-size: 0.65rem; 
+    padding: 4px 10px; 
+    border-radius: 20px; 
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.bg-pending { background: #ffc107; color: #000; }
+.bg-success { background: #28a745; color: #fff; }
+
+.order-detail {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin: 10px 0;
+}
+
+.btn-action { 
+    width: 100%; 
+    padding: 10px; 
+    border-radius: 10px; 
+    border: none; 
+    font-weight: 600; 
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-action:active { transform: scale(0.95); }
+
+/* Form Menu */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-logout {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.btn-logout {
+    background: rgba(220, 53, 69, 0.2);
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    padding: 12px 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-logout:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.section-title {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    display: block;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+}
+</style>
+    
 <div class="main-container">
     <header class="header">
         <h1>Admin <span>Udin</span></h1>
