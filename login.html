@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Pecel Lele Udin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #1b5e20;
+            --orange: #ff9800;
+            --glass: rgba(255, 255, 255, 0.95);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card {
+            background: var(--glass);
+            padding: 40px;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        h2 { margin: 0; font-family: 'Montserrat'; color: var(--green); }
+        .sub { margin: 4px 0 25px; font-size: 10px; letter-spacing: 1px; color: var(--orange); font-weight: 700; text-transform: uppercase; }
+
+        .input-group { text-align: left; margin-bottom: 15px; }
+        label { font-size: 11px; font-weight: 600; color: #555; margin-left: 5px; display: block; margin-bottom: 5px; }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px solid #eee;
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus { border-color: var(--green); background: #fff; }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 15px;
+            background: var(--green);
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 8px;
+        }
+
+        button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(27, 94, 32, 0.3); }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+
+        .link { display: block; margin-top: 20px; font-size: 12px; color: #777; cursor: pointer; }
+        .hidden { display: none; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div id="loginBox">
+        <h2>PECEL LELE UDIN</h2>
+        <p class="sub">Citarasa Sambal Tradisional</p>
+
+        <div class="input-group">
+            <label>LOGIN SEBAGAI</label>
+            <select id="loginRole">
+                <option value="pelanggan">Pelanggan</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>USERNAME</label>
+            <input type="text" id="loginUser" placeholder="Masukkan username">
+        </div>
+
+        <div class="input-group">
+            <label>PASSWORD</label>
+            <input type="password" id="loginPass" placeholder="Masukkan password">
+        </div>
+
+        <button id="btnLogin" onclick="authLogin()">MASUK SEKARANG</button>
+        <span class="link" onclick="toggleForm()">Belum punya akun? <b>Daftar</b></span>
+    </div>
+
+    <div id="registerBox" class="hidden">
+        <h2>DAFTAR AKUN</h2>
+        <p class="sub">Gabung jadi pelanggan setia</p>
+
+        <div class="input-group">
+            <label>NAMA LENGKAP</label>
+            <input type="text" id="regNama" placeholder="Nama lengkap Anda">
+        </div>
+
+        <div class="input-group">
+            <label>USERNAME</label>
+            <input type="text" id="regUser" placeholder="Buat username baru">
+        </div>
+
+        <div class="input-group">
+            <label>PASSWORD</label>
+            <input type="password" id="regPass" placeholder="Buat password baru">
+        </div>
+
+        <button id="btnReg" onclick="authRegister()">DAFTAR AKUN</button>
+        <span class="link" onclick="toggleForm()">Sudah punya akun? <b>Login</b></span>
+    </div>
+</div>
+
+<script>
+    // URL Web App dari Apps Script Anda
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby51ee5CvUWhTse03NLha0it7Q94YCsRFAlGThTAKVmvKNbEFx7O6Ie89sU5SJKlfAX/exec";
+
+    function toggleForm() {
+        document.getElementById("loginBox").classList.toggle("hidden");
+        document.getElementById("registerBox").classList.toggle("hidden");
+    }
+
+    async function authLogin() {
+        const btn = document.getElementById("btnLogin");
+        const user = document.getElementById("loginUser").value.trim();
+        const pass = document.getElementById("loginPass").value.trim();
+        const role = document.getElementById("loginRole").value;
+
+        if (!user || !pass) return alert("Username dan password wajib diisi!");
+
+        const payload = { action: "login", username: user, password: pass, role: role };
+        await processAuth(payload, btn);
+    }
+
+    async function authRegister() {
+        const btn = document.getElementById("btnReg");
+        const nama = document.getElementById("regNama").value.trim();
+        const user = document.getElementById("regUser").value.trim();
+        const pass = document.getElementById("regPass").value.trim();
+
+        if (!nama || !user || !pass) return alert("Semua kolom wajib diisi!");
+
+        const payload = { action: "register", nama: nama, username: user, password: pass };
+        await processAuth(payload, btn);
+    }
+
+    async function processAuth(data, btn) {
+        btn.disabled = true;
+        const originalText = btn.innerText;
+        btn.innerText = "Memproses...";
+
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.text();
+
+            if (result === "LOGIN_ADMIN") {
+                localStorage.setItem("user", data.username);
+                localStorage.setItem("role", "admin");
+                window.location.href = "Admin.html";
+            } 
+            else if (result === "LOGIN_PELANGGAN") {
+                localStorage.setItem("user", data.username);
+                localStorage.setItem("role", "pelanggan");
+                window.location.href = "Pelanggan.html";
+            } 
+            else if (result === "REGISTER_BERHASIL") {
+                alert("Registrasi berhasil! Silakan login.");
+                toggleForm();
+            } 
+            else {
+                alert(result); // Menampilkan pesan error dari server (Misal: LOGIN_GAGAL)
+            }
+        } catch (err) {
+            alert("Gagal terhubung ke server!");
+            console.error(err);
+        } finally {
+            btn.disabled = false;
+            btn.innerText = originalText;
+        }
+    }
+</script>
+
+</body>
+</html>

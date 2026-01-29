@@ -1,0 +1,159 @@
+:root {
+    --primary: #ff8c00;
+    --bg-dark: #1a1a1a;
+    --glass: rgba(255, 255, 255, 0.08);
+    --glass-heavy: rgba(255, 255, 255, 0.15);
+    --text: #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=1470&auto=format&fit=crop');
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 500px;
+    animation: fadeIn 0.8s ease;
+}
+
+/* Header */
+.header { text-align: center; margin-bottom: 30px; }
+.header h1 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; }
+.header h1 span { color: var(--primary); }
+.header p { opacity: 0.7; font-size: 0.9rem; }
+
+/* Global Card */
+.card {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 18px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary); margin-bottom: 8px; text-transform: uppercase; }
+
+input, select {
+    width: 100%; background: var(--glass-heavy); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 12px; color: white; outline: none; transition: 0.3s;
+}
+
+input:focus { border-color: var(--primary); background: rgba(255,255,255,0.2); }
+
+/* Menu Scroll */
+.menu-scroll { max-height: 300px; overflow-y: auto; padding-right: 5px; }
+.menu-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.menu-info { display: flex; align-items: center; gap: 15px; }
+.menu-info img { width: 55px; height: 55px; border-radius: 15px; object-fit: cover; border: 2px solid var(--primary); }
+.menu-text h4 { font-size: 0.95rem; margin-bottom: 2px; }
+.menu-text p { font-size: 0.8rem; font-weight: 600; color: var(--primary); }
+
+.qty-input { width: 60px !important; text-align: center; padding: 5px !important; }
+
+/* Grid Options */
+.grid-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+.option-item { margin-bottom: 0; }
+
+/* Dana & Alamat */
+.dana-info { text-align: center; background: rgba(0, 150, 255, 0.1); border-color: #0096ff; }
+.dana-info h3 { margin: 5px 0; color: #0096ff; letter-spacing: 1px; }
+
+/* Footer Action */
+.footer-action {
+    background: var(--bg-dark); border-radius: 25px; padding: 20px;
+    display: flex; flex-direction: column; gap: 15px; text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.total-display span { font-size: 0.9rem; opacity: 0.7; }
+.total-display h2 { color: var(--primary); font-size: 1.8rem; }
+
+.btn-submit {
+    background: var(--primary); color: white; border: none; padding: 15px;
+    border-radius: 15px; font-weight: 700; cursor: pointer;
+    display: flex; justify-content: center; align-items: center; gap: 10px;
+    transition: 0.3s;
+}
+
+.btn-submit:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,140,0,0.4); }
+
+.hidden { display: none; }
+.animate-fade { animation: slideIn 0.4s ease; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Scrollbar Custom */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+/* History Section */
+.section-history { margin-top: 20px; }
+
+.search-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.search-box input {
+    padding-left: 40px !important;
+    font-size: 0.85rem;
+}
+
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+thead {
+    background: var(--glass-heavy);
+    position: sticky;
+    top: 0;
+}
+
+th {
+    text-align: left;
+    padding: 12px;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+tr:hover { background: rgba(255,255,255,0.03); }

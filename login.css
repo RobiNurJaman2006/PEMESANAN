@@ -1,0 +1,159 @@
+/* FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+  --lele-green: #1b5e20;    /* Hijau Daun Pisang */
+  --lele-light: #2e7d32;
+  --sambal-red: #d32f2f;    /* Merah Sambal */
+  --warm-orange: #ff9800;   /* Oranye Hangat */
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --shadow-deep: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* CARD CONTAINER */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 30px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: var(--shadow-deep);
+    animation: fadeInScale 0.6s ease-out;
+}
+
+/* TYPOGRAPHY */
+h2 { 
+    color: var(--lele-green); 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px; 
+    margin-bottom: 5px; 
+    font-weight: 800;
+}
+
+p { 
+    color: var(--warm-orange); 
+    font-size: 11px; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    margin-bottom: 25px; 
+    letter-spacing: 1px;
+}
+
+/* INPUT GROUPS */
+.input-group { 
+    text-align: left; 
+    margin-bottom: 15px; 
+}
+
+label { 
+    display: block; 
+    font-size: 11px; 
+    font-weight: 600; 
+    color: #444; 
+    margin: 0 0 5px 8px; 
+    text-transform: uppercase;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #fdfdfd;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--lele-green);
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(27, 94, 32, 0.1);
+}
+
+/* BUTTONS */
+button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--lele-green), var(--lele-light));
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(27, 94, 32, 0.2);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(27, 94, 32, 0.3);
+    filter: brightness(1.1);
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* LINKS */
+.link {
+    display: block;
+    margin-top: 25px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.link:hover {
+    color: var(--sambal-red);
+    text-decoration: underline;
+}
+
+/* UTILITIES & ANIMATIONS */
+.hidden { 
+    display: none; 
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsivitas untuk layar kecil */
+@media (max-width: 480px) {
+    .card {
+        padding: 30px 20px;
+    }
+    h2 { font-size: 22px; }
+}

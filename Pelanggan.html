@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pecel Lele Udin - Modern Order</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+<div class="main-container">
+    <header class="header">
+        <h1>Pecel Lele <span>Udin</span></h1>
+        <p>Selamat datang di pemesanan berbasis web</p>
+    </header>
+
+    <form id="orderForm">
+        <div class="card section-nama">
+            <label><i class="fa-solid fa-user"></i> Nama Pelanggan</label>
+            <input type="text" name="nama" placeholder="Masukkan nama anda..." required>
+        </div>
+
+        <div class="card section-menu">
+            <label class="label-title">Pilih Menu & Jumlah</label>
+            <div class="menu-scroll" id="menuList">
+                </div>
+        </div>
+
+        <div class="grid-options">
+            <div class="card option-item">
+                <label><i class="fa-solid fa-truck"></i> Layanan</label>
+                <select name="layanan" id="layananSelect" onchange="hitungTotal()">
+                    <option value="Makan di tempat">Makan di tempat</option>
+                    <option value="Antar ke rumah">Antar ke rumah (+5k)</option>
+                </select>
+            </div>
+            <div class="card option-item">
+                <label><i class="fa-solid fa-credit-card"></i> Pembayaran</label>
+                <select name="pembayaran" id="pembayaranSelect" onchange="toggleDana()">
+                    <option value="Tunai">Tunai</option>
+                    <option value="DANA">DANA (E-Wallet)</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="alamatBox" class="card hidden animate-fade">
+            <label><i class="fa-solid fa-map-location-dot"></i> Alamat Pengiriman</label>
+            <input type="text" name="alamat" placeholder="Jl. Nama Jalan, No. Rumah...">
+        </div>
+
+        <div id="infoDana" class="card dana-info hidden animate-fade">
+            <p>Transfer DANA ke:</p>
+            <h3>0812-3456-7890</h3>
+            <small>A/N Udin Pecel Lele</small>
+        </div>
+
+        <div class="footer-action">
+            <div class="total-display">
+                <span>Total Bayar:</span>
+                <h2 id="displayTotal">Rp 0</h2>
+            </div>
+            <button type="submit" class="btn-submit">
+                <span>Konfirmasi Pesanan</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+        
+        <input type="hidden" name="total_harga" id="inputTotal">
+        <input type="hidden" name="detail_pesanan" id="inputDetail">
+    </form>
+</div>
+<div class="card section-history animate-fade">
+    <label><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Pesanan</label>
+    
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Cari nama pelanggan..." onkeyup="filterOrders()">
+    </div>
+
+    <div class="table-container">
+        <table id="orderTable">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Pesanan</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="orderHistoryBody">
+                <tr>
+                    <td colspan="3" style="text-align:center; opacity:0.5;">Memuat data...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="register.js"></script>
+</body>
+</html>
